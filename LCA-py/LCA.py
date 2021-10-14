@@ -57,15 +57,15 @@ def findLCA(root, n1, n2):
 #  / \ / \
 # 20 40 60 80
  
-root = Node(50)
-root = insert(root, 30)
-root = insert(root, 20)
-root = insert(root, 40)
-root = insert(root, 70)
-root = insert(root, 60)
-root = insert(root, 80)
+#root = Node(50)
+#root = insert(root, 30)
+#root = insert(root, 20)
+#root = insert(root, 40)
+#root = insert(root, 70)
+#root = insert(root, 60)
+#root = insert(root, 80)
 
-print("LCA(20, 40) = %d" %(findLCA(root,20,40)))
-print("LCA(80, 20) = %d" %(findLCA(root,80,20)))
-print("LCA(30, 80) = %d" %(findLCA(root,30,80)))
-print("LCA(60, 80) = %d" %(findLCA(root,60,80)))
+#print("LCA(20, 40) = %d" %(findLCA(root,20,40)))
+#print("LCA(80, 20) = %d" %(findLCA(root,80,20)))
+#print("LCA(30, 80) = %d" %(findLCA(root,30,80)))
+#print("LCA(60, 80) = %d" %(findLCA(root,60,80)))
