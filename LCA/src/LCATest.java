@@ -90,4 +90,9 @@ public class LCATest {
         //if the same number is used twice which is not in the tree
         assertEquals(-1, tree.findLCA(0,0));
     }
+
+    //I know DAG test won't work as my Node only supports 2 branches to other Nodes
+    //left and right, so I will have to change my Node class and insert class completely
+    //after I have done that I can go on and make more tests to see if LCA works and
+    //if not I can improve the solution as well
 }
