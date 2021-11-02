@@ -12,6 +12,7 @@ public class main {
      15   25   55         90
        */
 
+        /*
         DAG tree = new DAG();
 
         DAGNode node = new DAGNode(50);
@@ -61,6 +62,7 @@ public class main {
         System.out.println("LCA(30, 80): " + tree.findLCA(30,80).get(0));
         System.out.println("LCA(60, 80): " + tree.findLCA(60,80).get(1));
         System.out.println("LCA(80,500): " + tree.findLCA(80,500).get(0));
+        */
 
     }
 
