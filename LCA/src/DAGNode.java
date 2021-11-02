@@ -1,12 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
+
 //class containing children of the current node(left, right)
 //and the value of the node
-public class Node {
+public class DAGNode {
     int key;
-    Node left, right;
+    List<DAGNode> children;
 
     //initialising a node with its value and initialising its children as null
-    public Node(int item){
+    public DAGNode(int item){
         key = item;
-        left = right = null;
+        children = new ArrayList<>();
     }
 }
