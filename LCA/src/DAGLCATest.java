@@ -21,7 +21,7 @@ public class DAGLCATest {
         DAGNode node = new DAGNode(50);
         tree.insert(node);
 
-        assertEquals(50, tree.findLCA(50,50).get(1));
+        assertEquals(50, tree.findLCA(50,50).get(0));
         assertEquals(-1, tree.findLCA(0,50).get(0));
         assertEquals(-1, tree.findLCA(50,100).get(0));
         assertEquals(-1, tree.findLCA(0,100).get(0));
@@ -38,9 +38,9 @@ public class DAGLCATest {
         node = new DAGNode(30);
         tree.insert(parentNode, node);
 
-        assertEquals(50, tree.findLCA(50,50).get(1));
-        assertEquals(50, tree.findLCA(30,50).get(1));
-        assertEquals(30, tree.findLCA(30,30).get(2));
+        assertEquals(50, tree.findLCA(50,50).get(0));
+        assertEquals(50, tree.findLCA(30,50).get(0));
+        assertEquals(30, tree.findLCA(30,30).get(1));
         assertEquals(-1, tree.findLCA(0,50).get(0));
         assertEquals(-1, tree.findLCA(50,100).get(0));
         assertEquals(-1, tree.findLCA(0,100).get(0));
@@ -75,9 +75,14 @@ public class DAGLCATest {
         tree.insert(parentNode, node);
         DAGNode parentNode4 = node;
 
+        DAGNode newParentNode = new DAGNode(1000);
+        tree.insert(newParentNode);
         node = new DAGNode(80);
         tree.insert(parentNode, node);
+        tree.insert(newParentNode, node);
         DAGNode parentNode5 = node;
+        node = new DAGNode(500);
+        tree.insert(newParentNode, node);
 
         node = new DAGNode(15);
         tree.insert(parentNode3, node);
@@ -91,35 +96,37 @@ public class DAGLCATest {
         tree.insert(parentNode5, node);
 
         /* Let us create following BST
-              50
-            /    \
-           /      \
-         30        70
-        /   \     /   \
+              50           1000
+            /    \          / \
+           /      \        /   \
+         30        70     /    500
+        /   \     /   \  /
       20     40  60    80
       /  \      /        \
      15   25   55         90
        */
 
         //if the numbers are in the tree
-        assertEquals(30, tree.findLCA(20,40).get(2));
-        assertEquals(50, tree.findLCA(80,20).get(1));
-        assertEquals(50, tree.findLCA(30,80).get(1));
-        assertEquals(70, tree.findLCA(60,80).get(2));
-        assertEquals(30, tree.findLCA(15,40).get(2));
-        assertEquals(70, tree.findLCA(55,90).get(2));
+        assertEquals(30, tree.findLCA(20,40).get(1));
+        assertEquals(50, tree.findLCA(80,20).get(0));
+        assertEquals(50, tree.findLCA(30,80).get(0));
+        assertEquals(70, tree.findLCA(60,80).get(1));
+        assertEquals(30, tree.findLCA(15,40).get(1));
+        assertEquals(70, tree.findLCA(55,90).get(1));
         //if the numbers come one after another in the tree
-        assertEquals(80, tree.findLCA(80,90).get(3));
-        assertEquals(50, tree.findLCA(30,50).get(1));
-        assertEquals(30, tree.findLCA(30,25).get(2));
+        assertEquals(80, tree.findLCA(80,90).get(2));
+        assertEquals(50, tree.findLCA(30,50).get(0));
+        assertEquals(30, tree.findLCA(30,25).get(1));
         //if one or two of the numbers are not in the tree
         assertEquals(-1, tree.findLCA(15,100).get(0));
         assertEquals(-1, tree.findLCA(35,70).get(0));
         assertEquals(-1, tree.findLCA(5,100).get(0));
         //if the same number is used twice
-        assertEquals(50, tree.findLCA(50,50).get(1));
+        assertEquals(50, tree.findLCA(50,50).get(0));
         //if the same number is used twice which is not in the tree
         assertEquals(-1, tree.findLCA(0,0).get(0));
+
+        assertEquals(1000, tree.findLCA(500,80).get(0));
     }
 
 }

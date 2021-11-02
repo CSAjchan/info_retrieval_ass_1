@@ -30,7 +30,14 @@ public class DAG {
 
     private List<Integer> findLCAInternal(DAGNode root, int n1, int n2){
         List<Integer> parentsFound = new ArrayList();
-        if(!findPath(root,n1,path1)||!findPath(root,n2,path2)){
+
+        boolean pathsFound = false;
+        for(int i = 0; i < root.children.size(); i++) {
+            if (findPath(root.children.get(i), n1, path1) && findPath(root.children.get(i), n2, path2)) {
+                pathsFound = true;
+            }
+        }
+        if(pathsFound == false){
             parentsFound.add(-1);
             return parentsFound;
         }
