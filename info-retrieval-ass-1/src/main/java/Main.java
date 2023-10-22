@@ -165,7 +165,7 @@ public class Main {
 
             for(ScoreDoc hit: bestHits) {
                 Document doc = searcher.doc(hit.doc);
-                String result = String.format("%03d 0 %s %f%n", queryCount, doc.get("id"), hit.score);
+                String result = String.format("%03d 0 %s %f STANDARD%n", queryCount, doc.get("id"), hit.score);
                 results.add(result);
                 System.out.println(result);
             }
