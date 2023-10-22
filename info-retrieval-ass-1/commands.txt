@@ -1,0 +1,4 @@
+~/info-retrieval/info_retrieval_ass_1/info-retrieval-ass-1/src/main/resources/QRelsCorrectedforTRECeval
+
+results/BM25Similarity_EnglishAnalyzer  results/ClassicSimilarity_EnglishAnalyzer  results/LMDirichletSimilarity_EnglishAnalyzer
+results/BM25Similarity_SimpleAnalyzer   results/ClassicSimilarity_SimpleAnalyzer   results/LMDirichletSimilarity_SimpleAnalyzer
