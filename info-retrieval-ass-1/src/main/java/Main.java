@@ -207,9 +207,14 @@ public class Main {
                 writer.write(line);
             }
 
+            writer.close();
+        }
+
+        for(HashMap.Entry<String, Similarity> similarity : similarities.entrySet()){
             DocumentIndex(documents, similarity.getValue(), analyzer2);
-            results = QueryIndex(queries, similarity.getValue(), analyzer2);
-            writer = new BufferedWriter(
+
+            ArrayList<String> results = QueryIndex(queries, similarity.getValue(), analyzer2);
+            BufferedWriter writer = new BufferedWriter(
                     new FileWriter(String.format("results/%s", similarity.getKey() + "_" + analyzer2Name)));
             for(String line : results) {
                 writer.write(line);
