@@ -1,4 +1,5 @@
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.core.SimpleAnalyzer;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -188,6 +189,8 @@ public class Main {
 
         String analyzerName = "EnglishAnalyzer";
         Analyzer analyzer = new EnglishAnalyzer();
+        String analyzer2Name = "SimpleAnalyzer";
+        Analyzer analyzer2 = new SimpleAnalyzer();
 
         HashMap<String, Similarity> similarities = new HashMap<>();
         similarities.put("ClassicSimilarity", new ClassicSimilarity());
@@ -200,6 +203,14 @@ public class Main {
             ArrayList<String> results = QueryIndex(queries, similarity.getValue(), analyzer);
             BufferedWriter writer = new BufferedWriter(
                     new FileWriter(String.format("results/%s", similarity.getKey() + "_" + analyzerName)));
+            for(String line : results) {
+                writer.write(line);
+            }
+
+            DocumentIndex(documents, similarity.getValue(), analyzer2);
+            results = QueryIndex(queries, similarity.getValue(), analyzer2);
+            writer = new BufferedWriter(
+                    new FileWriter(String.format("results/%s", similarity.getKey() + "_" + analyzer2Name)));
             for(String line : results) {
                 writer.write(line);
             }
