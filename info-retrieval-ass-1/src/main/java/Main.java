@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Main {
-    public static final int MAX_HITS_PER_PAGE = 30;
+    public static final int MAX_HITS_PER_PAGE = 50;
     public static final String ID = ".I";
     public static final String TITLE = ".T";
     public static final String AUTHOR = ".A";
