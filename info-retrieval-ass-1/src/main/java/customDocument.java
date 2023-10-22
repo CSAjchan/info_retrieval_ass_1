@@ -1,11 +1,11 @@
-public class Document {
+public class customDocument {
     public int Id;
     public String Title;
     public String Author;
     public String Bibliography;
     public String Text;
 
-    public Document(int id, String title, String author, String bibliography, String text){
+    public customDocument(int id, String title, String author, String bibliography, String text){
         Id = id;
         Title = title.replaceFirst(".T", "");
         Author = author.replaceFirst(".A", "");
