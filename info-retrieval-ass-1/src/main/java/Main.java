@@ -39,6 +39,34 @@ public class Main {
         return documents;
     }
 
+    public static ArrayList<Query> ReadQueries(String path){
+        ArrayList<Query> queries = new ArrayList<>();
+        InputStream inputStream = Main.class.getResourceAsStream(path);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+
+        try {
+            String line = "";
+            int idIndex = 0;
+            String queryLines = "";
+
+            while((line = bufferedReader.readLine()) != null){
+                if(line.startsWith(ID) && idIndex != 0){
+                    queries.add(ParseQuery(queryLines));
+                    queryLines = "";
+                    queryLines = queryLines + " " + line;
+                }
+                queryLines = queryLines + " " + line;
+                idIndex += 1;
+            }
+            queries.add(ParseQuery(queryLines));
+        }
+        catch (IOException e){
+            System.out.println(e);
+        }
+
+        return queries;
+    }
+
     public static Document ParseDocument(String documentLines){
         int id = Integer.parseInt(getSubstring(documentLines, ID, TITLE).split(" ")[1]);
         String title = getSubstring(documentLines, TITLE, AUTHOR);
@@ -47,6 +75,13 @@ public class Main {
         String text = getSubstring(documentLines, TEXT);
 
         return new Document(id, title, author, bibliography, text);
+    }
+
+    public static Query ParseQuery(String queryLines){
+        int id = Integer.parseInt(getSubstring(queryLines, ID, TEXT).split(" ")[1]);
+        String text = getSubstring(queryLines, TEXT);
+
+        return new Query(id, text);
     }
 
     public static String getSubstring(String documentLines, String sectionStart, String sectionEnd){
@@ -64,6 +99,10 @@ public class Main {
 
     public static void main(String[] args){
         ArrayList<Document> documents = ReadDocuments("/cran.all.1400");
+        ArrayList<Query> queries = ReadQueries("/cran.qry");
         //documents.forEach(document -> System.out.println(document.Id + " " + document.Author));
+        //System.out.println(documents.size());
+        //queries.forEach(query -> System.out.println(query.Id + " " + query.Text));
+        //System.out.println(queries.size());
     }
 }
